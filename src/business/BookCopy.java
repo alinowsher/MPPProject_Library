@@ -2,6 +2,8 @@ package business;
 
 import java.io.Serializable;
 
+import business.CheckoutRecord.CheckoutRecordEntry;
+
 /**
  * Immutable class
  */
@@ -11,7 +13,7 @@ final public class BookCopy implements Serializable {
 	private Book book;
 	private int copyNum;
 	private boolean isAvailable;
-	BookCopy(Book book, int copyNum, boolean isAvailable) {
+	public BookCopy(Book book, int copyNum, boolean isAvailable) {
 		this.book = book;
 		this.copyNum = copyNum;
 		this.isAvailable = isAvailable;
@@ -39,6 +41,7 @@ final public class BookCopy implements Serializable {
 		isAvailable = !isAvailable;
 	}
 	
+	
 	@Override
 	public boolean equals(Object ob) {
 		if(ob == null) return false;
@@ -46,5 +49,4 @@ final public class BookCopy implements Serializable {
 		BookCopy copy = (BookCopy)ob;
 		return copy.book.getIsbn().equals(book.getIsbn()) && copy.copyNum == copyNum;
 	}
-	
 }

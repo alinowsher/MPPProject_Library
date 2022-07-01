@@ -1,4 +1,4 @@
-package librarysystem;
+package librarySystem;
 
 import java.awt.Component;
 import java.awt.EventQueue;

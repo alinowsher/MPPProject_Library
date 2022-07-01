@@ -2,8 +2,8 @@ package business;
 
 import java.util.*;
 
-import dataaccess.DataAccess;
-import dataaccess.DataAccessFacade;
+import dataAccess.DataAccess;
+import dataAccess.DataAccessFacade;
 
 public class Main {
 

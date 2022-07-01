@@ -4,12 +4,18 @@ import java.io.Serializable;
 
 final public class Author extends Person implements Serializable {
 	private String bio;
+	private String authorId;
+	
 	public String getBio() {
 		return bio;
 	}
 	
-	public Author(String f, String l, String t, Address a, String bio) {
+	public String getAuthorId() {
+		return authorId;
+	}
+	public Author(String authorId, String f, String l, String t, Address a, String bio) {
 		super(f, l, t, a);
+		this.authorId = authorId;
 		this.bio = bio;
 	}
 

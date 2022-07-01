@@ -4,11 +4,12 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 
-import dataaccess.DataAccess;
-import dataaccess.DataAccessFacade;
+import dataAccess.DataAccess;
+import dataAccess.DataAccessFacade;
 
 final public class LibraryMember extends Person implements Serializable {
 	private String memberId;
+	private CheckoutRecord checkoutRecord;
 	
 	public LibraryMember(String memberId, String fname, String lname, String tel,Address add) {
 		super(fname,lname, tel, add);
@@ -20,7 +21,9 @@ final public class LibraryMember extends Person implements Serializable {
 		return memberId;
 	}
 
-	
+	public CheckoutRecord getCheckoutRecord() {
+		return checkoutRecord;
+	}
 	
 	@Override
 	public String toString() {
