@@ -1,4 +1,4 @@
-package librarySystem;
+package librarysystem;
 
 import java.awt.Color;
 import java.awt.Component;

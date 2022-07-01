@@ -1,4 +1,4 @@
-package librarySystem;
+package librarysystem;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -16,8 +16,8 @@ import business.Address;
 import business.ControllerInterface;
 import business.LibraryMember;
 import business.SystemController;
-import dataAccess.DataAccess;
-import dataAccess.DataAccessFacade;
+import dataaccess.DataAccess;
+import dataaccess.DataAccessFacade;
 
 
 public class AllMemberIdsWindow extends JFrame implements LibWindow {

@@ -8,10 +8,10 @@ import java.util.List;
 import java.util.Set;
 
 import business.CheckoutRecord.CheckoutRecordEntry;
-import dataAccess.Auth;
-import dataAccess.DataAccess;
-import dataAccess.DataAccessFacade;
-import dataAccess.User;
+import dataaccess.Auth;
+import dataaccess.DataAccess;
+import dataaccess.DataAccessFacade;
+import dataaccess.User;
 
 public class SystemController implements ControllerInterface {
 public static Auth currentAuth = null;

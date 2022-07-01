@@ -1,4 +1,4 @@
-package librarySystem;
+package librarysystem;
 
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -17,7 +17,7 @@ import javax.swing.JPanel;
 
 import business.ControllerInterface;
 import business.SystemController;
-import dataAccess.Auth;
+import dataaccess.Auth;
 
 public class LibrarySystem extends JFrame implements LibWindow {
 	ControllerInterface ci = new SystemController();

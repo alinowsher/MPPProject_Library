@@ -1,4 +1,4 @@
-package librarySystem;
+package librarysystem;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -19,7 +19,7 @@ import javax.swing.JOptionPane;
 import business.ControllerInterface;
 import business.LoginException;
 import business.SystemController;
-import dataAccess.Auth;
+import dataaccess.Auth;
 
 public class LoginWindow extends JFrame implements LibWindow {
 	public static final LoginWindow INSTANCE = new LoginWindow();

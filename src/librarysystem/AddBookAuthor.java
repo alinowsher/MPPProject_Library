@@ -1,4 +1,4 @@
-package librarySystem;
+package librarysystem;
 
 import java.awt.*;
 import java.util.List;

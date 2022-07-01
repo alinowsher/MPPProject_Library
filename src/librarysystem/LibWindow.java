@@ -1,4 +1,4 @@
-package librarySystem;
+package librarysystem;
 
 public interface LibWindow {
 	void init();
