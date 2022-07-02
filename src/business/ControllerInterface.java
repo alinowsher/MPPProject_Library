@@ -5,18 +5,21 @@ import java.util.List;
 import java.util.Set;
 
 import business.Book;
-import dataaccess.DataAccess;
-import dataaccess.DataAccessFacade;
+import dataAccess.DataAccess;
+import dataAccess.DataAccessFacade;
 
 public interface ControllerInterface {
 	public void login(String id, String password) throws LoginException;
 	public List<String> allMemberIds();
 	public List<String> allBookIds();
 	public void addLibraryMember(LibraryMember member);
+	public void addLibraryMember(String txtMemberID, String txtFirstName,
+			String txtLastName, String txtTelephone, 
+			Address address);
 	
 	//i changed bellow (addCheckoutRecord added newly)
 	public void addCheckoutRecord(CheckoutRecordNew rec);
-	public void addCheckoutRecordEntry(String memberId, String isbn) throws LibrarySystemException;
+	//public void addCheckoutRecordEntry(String memberId, String isbn) throws LibrarySystemException;
 	//i changed bellow. (need to be changed because book copies are being saved already from addBook Method hough its creating only one. There should have another BookCopy[] argument in book constructor  )
 	public void addCopyOfBook(String isbn) throws LibrarySystemException;
 	

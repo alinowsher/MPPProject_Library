@@ -1,4 +1,4 @@
-package librarysystem;
+package librarySystem;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -47,7 +47,7 @@ public class CreateBookCopy extends JFrame implements LibWindow {
 		pnlButtonSave.add(btnBacktoMain);
 		pnlButtonSave.add(btnSave);
 		pnlButtonSave.setBounds(20, 100, 360, 35);
-		pnlButtonSave.setBackground(Color.green);
+		pnlButtonSave.setBackground(Color.gray);
 		
 		panelCreateCopyField.add(lblISBN);
 		panelCreateCopyField.add(txtISBN);

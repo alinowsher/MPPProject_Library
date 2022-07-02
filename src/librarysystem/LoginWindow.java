@@ -1,4 +1,4 @@
-package librarysystem;
+package librarySystem;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -19,7 +19,7 @@ import javax.swing.JOptionPane;
 import business.ControllerInterface;
 import business.LoginException;
 import business.SystemController;
-import dataaccess.Auth;
+import dataAccess.Auth;
 
 public class LoginWindow extends JFrame implements LibWindow {
 	public static final LoginWindow INSTANCE = new LoginWindow();
@@ -42,7 +42,7 @@ public class LoginWindow extends JFrame implements LibWindow {
 	private JTextField password;
 	private JLabel label;
 	private JButton loginButton;
-	//private JButton logoutButton;
+	private JButton logoutButton;
 
 	public boolean isInitialized() {
 		return isInitialized;
@@ -60,10 +60,9 @@ public class LoginWindow extends JFrame implements LibWindow {
 
 	/* This class is a singleton */
 	private LoginWindow() {
-
 	}
 
-	public void init() {
+	public void init() {		
 		mainPanel = new JPanel();
 		defineUpperHalf();
 		defineMiddleHalf();
@@ -78,7 +77,7 @@ public class LoginWindow extends JFrame implements LibWindow {
 		getContentPane().add(mainPanel);
 		isInitialized(true);
 		pack();
-		// setSize(660, 500);
+		//setSize(460, 400);
 
 	}
 
@@ -150,8 +149,9 @@ public class LoginWindow extends JFrame implements LibWindow {
 		JPanel bottomText = new JPanel();
 		topText.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 0));
 		bottomText.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 0));
-
+		
 		username = new JTextField(10);
+		username.setText("");
 		label = new JLabel("Username");
 		label.setFont(Util.makeSmallFont(label.getFont()));
 		topText.add(username);
@@ -171,6 +171,7 @@ public class LoginWindow extends JFrame implements LibWindow {
 		bottomText.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 0));
 
 		password = new JPasswordField(10);
+		password.setText("");
 		label = new JLabel("Password");
 		label.setFont(Util.makeSmallFont(label.getFont()));
 		topText.add(password);

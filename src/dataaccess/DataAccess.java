@@ -1,4 +1,4 @@
-package dataaccess;
+package dataAccess;
 
 import java.util.HashMap;
 
@@ -7,7 +7,7 @@ import business.Book;
 import business.CheckoutRecord;
 import business.CheckoutRecordNew;
 import business.LibraryMember;
-import dataaccess.DataAccessFacade.StorageType;
+import dataAccess.DataAccessFacade.StorageType;
 
 public interface DataAccess { 
 	public HashMap<String,Book> readBooksMap();

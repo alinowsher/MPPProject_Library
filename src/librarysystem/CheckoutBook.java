@@ -1,4 +1,4 @@
-package librarysystem;
+package librarySystem;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -32,7 +32,7 @@ import business.CheckoutRecordNew;
 import business.ControllerInterface;
 import business.LibraryMember;
 import business.SystemController;
-import librarysystem.AddBook.AuthorRenderer;
+import librarySystem.AddBook.AuthorRenderer;
 
 public class CheckoutBook extends JFrame implements LibWindow{
 

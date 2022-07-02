@@ -1,19 +1,25 @@
-package librarysystem;
+package librarySystem;
 
 import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.Toolkit;
+import java.util.HashMap;
 
 import javax.swing.JFrame;
+
+import dataAccess.DataAccess;
+import dataAccess.DataAccessFacade;
+import dataAccess.User;
 
 
 
 public class Main {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) {		
+		
 	      EventQueue.invokeLater(() -> 
 	         {
-	            LibrarySystem.INSTANCE.setTitle("Sample Library Application");
+	            LibrarySystem.INSTANCE.setTitle("Library Application");
 	            LibrarySystem.INSTANCE.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	            
 	            LibrarySystem.INSTANCE.init();

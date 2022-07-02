@@ -1,4 +1,4 @@
-package librarysystem;
+package librarySystem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -99,8 +99,8 @@ public class AddBook extends JFrame implements LibWindow{
 	    
 	    cmbAuthors.setRenderer(new AuthorRenderer());
 	    
-	    JButton btnOk=new JButton("Ok");
-	    btnOk.setBounds(250,200,30,20);
+	    JButton btnOk=new JButton("+");
+	    btnOk.setBounds(250,200,50,20);
 	    addOkButtonListener(btnOk);
 	    
 	    JLabel lblBookCopy = new JLabel("Book Copies");
@@ -234,11 +234,13 @@ public class AddBook extends JFrame implements LibWindow{
 			if(txtISBN.getText().equals("") || txtTitle.getText().equals("") || txtCheckoutLength.getText().equals("") || 
 					listModel.size()==0 || modelBookCopies.size()==0) {
 				JOptionPane.showMessageDialog(this,"Fields can not be left blank","Required fields can not be empty", JOptionPane.ERROR_MESSAGE);
-				return;
+				
 			}
 			//Book book = new Book(txtISBN.getText().trim(), txtTitle.getText().trim(), Integer.parseInt( txtCheckoutLength.getText().trim()), authors);
 			try {
-				ci.addBook(txtISBN.getText().trim(), txtTitle.getText().trim(), Integer.parseInt( txtCheckoutLength.getText().trim()), authors);							
+				ci.addBook(txtISBN.getText().trim(), txtTitle.getText().trim(), Integer.parseInt( txtCheckoutLength.getText().trim()), authors);
+				
+				
 				
 			} catch (Exception e) {
 				JOptionPane.showMessageDialog(this,e.getMessage(),"Save Failed", JOptionPane.ERROR_MESSAGE);
