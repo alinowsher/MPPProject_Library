@@ -50,7 +50,7 @@ public class CheckoutBook extends JFrame implements LibWindow {
 	JTable jt;
 
 	@Override
-	public void init() {		
+	public void init() {
 		isInitialized = true;
 		JPanel panelCheckoutFields = new JPanel();
 		panelCheckoutFields.setLayout(null);
@@ -90,10 +90,9 @@ public class CheckoutBook extends JFrame implements LibWindow {
 		pnlButtonSave.add(btnBackToMain);
 		pnlButtonSave.add(btnCheckOut);
 		pnlButtonSave.setBounds(20, 150, 360, 35);
-		pnlButtonSave.setBackground(Color.green);
-		
-		
-		//showCheckoutList();
+		pnlButtonSave.setBackground(Color.gray);
+
+		// showCheckoutList();
 		jt = new JTable();
 		JScrollPane sp = new JScrollPane(jt);
 		sp.setBounds(20, 200, 360, 150);
@@ -114,7 +113,7 @@ public class CheckoutBook extends JFrame implements LibWindow {
 		this.setSize(420, 420);
 		this.setVisible(true);
 		this.add(panelCheckoutFields);
-		
+
 	}
 
 	public void showCheckoutList() {
@@ -129,7 +128,7 @@ public class CheckoutBook extends JFrame implements LibWindow {
 		model.addColumn("Member");
 		model.addColumn("Issue Date");
 		model.addColumn("Due Date");
-		//jt = new JTable(model);		
+		// jt = new JTable(model);
 		jt.setModel(model);
 
 		// load checkOutRecord
@@ -137,7 +136,8 @@ public class CheckoutBook extends JFrame implements LibWindow {
 			List<CheckoutRecordNew> dataa = ci.getCheckoutRecords();
 			if (dataa.size() != 0) {
 				for (CheckoutRecordNew cr : dataa) {
-					model.addRow(new Object[] { cr.getCopyNumber(), cr.getMemberId(), cr.getIssueDate(), cr.getDueDate() });
+					model.addRow(
+							new Object[] { cr.getCopyNumber(), cr.getMemberId(), cr.getIssueDate(), cr.getDueDate() });
 				}
 
 			}
@@ -146,8 +146,10 @@ public class CheckoutBook extends JFrame implements LibWindow {
 			// TODO: handle exception
 		}
 
-		 //model.addRow(new Object[] { "2", "1001", LocalDate.now(), LocalDate.now().plusDays(7) });
-		 //model.addRow(new Object[] { "1", "1002", LocalDate.now(), LocalDate.now().plusDays(21) });
+		// model.addRow(new Object[] { "2", "1001", LocalDate.now(),
+		// LocalDate.now().plusDays(7) });
+		// model.addRow(new Object[] { "1", "1002", LocalDate.now(),
+		// LocalDate.now().plusDays(21) });
 	}
 
 	private void addCheckIDListener(JButton butn) {
@@ -197,29 +199,35 @@ public class CheckoutBook extends JFrame implements LibWindow {
 
 			BookCopy bookCopy = (BookCopy) cmbCopies.getSelectedItem();
 
-			if (bookCopy == null) {
-				JOptionPane.showMessageDialog(this, "Pls select a book from the list.", "Save Failed",
-						JOptionPane.ERROR_MESSAGE);
-
-				return;
-			} else if (!bookCopy.isAvailable()) {
-				JOptionPane.showMessageDialog(this, "Selected book is not available.", "Save Failed",
-						JOptionPane.ERROR_MESSAGE);
-				return;
-			} else if (!idWasValidated) {
-				JOptionPane.showMessageDialog(this, "Enter valid ID then click CheckID.", "Save Failed",
-						JOptionPane.ERROR_MESSAGE);
-				return;
-			}
+//			if (bookCopy == null) {
+//				JOptionPane.showMessageDialog(this, "Pls select a book from the list.", "Save Failed",
+//						JOptionPane.ERROR_MESSAGE);
+//
+//				return;
+//			} else if (!bookCopy.isAvailable()) {
+//				JOptionPane.showMessageDialog(this, "Selected book is not available.", "Save Failed",
+//						JOptionPane.ERROR_MESSAGE);
+//				return;
+//			} else if (!idWasValidated) {
+//				JOptionPane.showMessageDialog(this, "Enter valid ID then click CheckID.", "Save Failed",
+//						JOptionPane.ERROR_MESSAGE);
+//				return;
+//			}
 
 			try {
-				CheckoutRecordNew checkOutRec = new CheckoutRecordNew(bookCopy, LocalDate.now(),
-						txtMemberID.getText().trim());
+				// CheckoutRecordNew checkOutRec = new CheckoutRecordNew(bookCopy,
+				// LocalDate.now(), txtMemberID.getText().trim());
+				// ci.addCheckoutRecord(checkOutRec);
 
-				ci.addCheckoutRecord(checkOutRec);
+				ci.addCheckoutRecord(bookCopy, LocalDate.now(), txtMemberID.getText().trim(), idWasValidated);
 
+			} catch (IllegalArgumentException e) {
+				JOptionPane.showMessageDialog(this, "Fields must have valid data", "Fields can not be left empty.",
+						JOptionPane.ERROR_MESSAGE);
+				return;
 			} catch (Exception e) {
-				// TODO: handle exception
+				JOptionPane.showMessageDialog(this, e.getMessage(), "Checkout Failed", JOptionPane.ERROR_MESSAGE);
+				return;
 			}
 
 			JOptionPane.showMessageDialog(this, "Save successful");

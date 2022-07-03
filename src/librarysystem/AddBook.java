@@ -223,21 +223,27 @@ public class AddBook extends JFrame implements LibWindow {
 	private void addBtnSaveListener(JButton butn) {
 		butn.addActionListener(evt -> {
 
-			if (txtISBN.getText().equals("") || txtTitle.getText().equals("") || txtCheckoutLength.getText().equals("")
-					|| listModel.size() == 0 || modelBookCopies.size() == 0) {
-				JOptionPane.showMessageDialog(this, "Fields can not be left blank", "Required fields can not be empty",
-						JOptionPane.ERROR_MESSAGE);
-
-			}
+//			if (txtISBN.getText().equals("") || txtTitle.getText().equals("") || txtCheckoutLength.getText().equals("")
+//					|| listModel.size() == 0 || modelBookCopies.size() == 0) {
+//				JOptionPane.showMessageDialog(this, "Fields can not be left blank", "Required fields can not be empty",
+//						JOptionPane.ERROR_MESSAGE);
+//
+//			}
 			// Book book = new Book(txtISBN.getText().trim(), txtTitle.getText().trim(),
 			// Integer.parseInt( txtCheckoutLength.getText().trim()), authors);
 			try {
 				ci.addBook(txtISBN.getText().trim(), txtTitle.getText().trim(),
 						Integer.parseInt(txtCheckoutLength.getText().trim()), authors);
 
-			} catch (Exception e) {
+			}
+			catch (IllegalArgumentException e) {
+				JOptionPane.showMessageDialog(this, "Fields can not be left blank", "Required fields can not be empty",
+						JOptionPane.ERROR_MESSAGE);
+				return;
+			}
+			catch (Exception e) {
 				JOptionPane.showMessageDialog(this, e.getMessage(), "Save Failed", JOptionPane.ERROR_MESSAGE);
-
+				return;
 			}
 
 			DefaultTableModel model = (DefaultTableModel) jt.getModel();
@@ -275,7 +281,7 @@ public class AddBook extends JFrame implements LibWindow {
 	@Override
 	public boolean isInitialized() {
 		// TODO Auto-generated method stub
-		return false;
+		return isInitialized;
 	}
 
 	@Override

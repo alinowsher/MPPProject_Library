@@ -1,5 +1,0 @@
-
-
-ID: 101, Password: xyz, Auth: LIBRARIAN,
-ID: 102, Password: abc, Auth: ADMIN,
-ID: 103, Password:111, Auth:BOTH

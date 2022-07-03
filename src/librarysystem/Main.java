@@ -10,8 +10,14 @@ import javax.swing.JFrame;
 import dataAccess.DataAccess;
 import dataAccess.DataAccessFacade;
 import dataAccess.User;
-
-
+/*
+ * Group members:
+ * 1. Sushanta Acharjee
+ * 2. Mohammad Nowsher Ali
+ * 3. Kollol Chakraborty shekhor
+ * 4. Sumayya Jahan
+ * 5. Muhammad Hizbullah Fuad
+*/
 
 public class Main {
 

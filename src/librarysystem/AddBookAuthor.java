@@ -150,7 +150,7 @@ public class AddBookAuthor extends JFrame implements LibWindow {
 
 		pnlButtonSave.setBounds(20, 170, 360, 35);
 
-		DefaultTableModel model = new DefaultTableModel(){
+		DefaultTableModel model = new DefaultTableModel() {
 			@Override
 			public boolean isCellEditable(int row, int column) {
 				// all cells false
@@ -208,16 +208,16 @@ public class AddBookAuthor extends JFrame implements LibWindow {
 	private void addAuthorButtonListener(JButton butn) {
 		butn.addActionListener(evt -> {
 
-			if (txtAuthorID.getText().trim().equals("") || txtFirstName.getText().trim().equals("")
-					|| txtLastName.getText().trim().equals("") || txtTelephone.getText().equals("")
-					|| txtStreet.getText().equals("") || txtCity.getText().equals("")
-					|| txtState.getText().trim().equals("") || txtZip.getText().equals("")
-					|| txtCredentials.getText().equals("") || txtShortBio.getText().equals("")) {
-				JOptionPane.showMessageDialog(this, "Fields must be entered", "Fields can not be left empty.",
-						JOptionPane.ERROR_MESSAGE);
-
-				return;
-			}
+//			if (txtAuthorID.getText().trim().equals("") || txtFirstName.getText().trim().equals("")
+//					|| txtLastName.getText().trim().equals("") || txtTelephone.getText().equals("")
+//					|| txtStreet.getText().equals("") || txtCity.getText().equals("")
+//					|| txtState.getText().trim().equals("") || txtZip.getText().equals("")
+//					|| txtCredentials.getText().equals("") || txtShortBio.getText().equals("")) {
+//				JOptionPane.showMessageDialog(this, "Fields must be entered", "Fields can not be left empty.",
+//						JOptionPane.ERROR_MESSAGE);
+//
+//				return;
+//			}
 
 			try {
 
@@ -236,8 +236,14 @@ public class AddBookAuthor extends JFrame implements LibWindow {
 				jt.setRowSelectionInterval(model.getRowCount() - 1, model.getRowCount() - 1);
 				jt.scrollRectToVisible(new Rectangle(jt.getCellRect(model.getRowCount() - 1, 0, true)));
 
+			} catch (IllegalArgumentException e) {
+				JOptionPane.showMessageDialog(this, "Fields must be entered", "Fields can not be left empty.",
+						JOptionPane.ERROR_MESSAGE);
+
+				return;
 			} catch (Exception e) {
 				JOptionPane.showMessageDialog(this, e.getMessage(), "Save Failed", JOptionPane.ERROR_MESSAGE);
+				return;
 			}
 
 			resetFields();
@@ -262,7 +268,7 @@ public class AddBookAuthor extends JFrame implements LibWindow {
 	@Override
 	public boolean isInitialized() {
 		// TODO Auto-generated method stub
-		return false;
+		return isInitialized;
 	}
 
 	@Override

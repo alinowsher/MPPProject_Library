@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Hashtable;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Set;
 
@@ -17,14 +18,13 @@ import dataAccess.User;
 public class SystemController implements ControllerInterface {
 	public static Auth currentAuth = null;
 
-	public void login(String id, String password) throws LoginException {		
-		
-		// To insert new users.
-		//DataAccessFacade da1 = new DataAccessFacade();
-		//da1.createUserMap();
+	public void login(String id, String password) throws LoginException {
 
-		
-		DataAccess da = new DataAccessFacade();		
+		// To insert new users.
+		// DataAccessFacade da1 = new DataAccessFacade();
+		// da1.createUserMap();
+
+		DataAccess da = new DataAccessFacade();
 		HashMap<String, User> map = da.readUserMap();
 		if (map == null) {
 			throw new LoginException("System has no users!, Add a User");
@@ -64,20 +64,27 @@ public class SystemController implements ControllerInterface {
 
 	@Override
 	public void addLibraryMember(LibraryMember member) {
+		if (member.getFirstName().trim().equals("") || member.getLastName().trim().equals("")
+				|| member.getMemberId().trim().equals("") || member.getTelephone().trim().equals("")
+				|| member.getAddress().getCity().trim().equals("") || member.getAddress().getState().trim().equals("")
+				|| member.getAddress().getStreet().trim().equals("")
+				|| member.getAddress().getZip().trim().equals("")) {
+			throw new IllegalArgumentException();
+		}
 		DataAccess da = new DataAccessFacade();
 		da.saveNewMember(member);
 	}
-	
-	@Override
-	public void addLibraryMember(String txtMemberID, String txtFirstName, 
-			String txtLastName, String txtTelephone, Address address) {
-	
-		DataAccess da = new DataAccessFacade();
-		LibraryMember member = new LibraryMember(txtMemberID, txtFirstName, 
-				txtLastName, txtTelephone, address);
 
-		da.saveNewMember(member);
-	}
+//	@Override
+//	public void addLibraryMember(String txtMemberID, String txtFirstName, 
+//			String txtLastName, String txtTelephone, Address address) {
+//	
+//		DataAccess da = new DataAccessFacade();
+//		LibraryMember member = new LibraryMember(txtMemberID, txtFirstName, 
+//				txtLastName, txtTelephone, address);
+//
+//		da.saveNewMember(member);
+//	}
 
 //	@Override
 //	public void addCheckoutRecordEntry(String memberId, String isbn) throws LibrarySystemException {
@@ -116,7 +123,10 @@ public class SystemController implements ControllerInterface {
 //	}
 
 	@Override
-	public void addCopyOfBook(String isbn) throws LibrarySystemException {
+	public void addCopyOfBook(String isbn, String copyNumber) throws LibrarySystemException {
+		if (isbn.trim().equals("") || copyNumber.trim().equals("")) {
+			throw new IllegalArgumentException();
+		}
 		DataAccess da = new DataAccessFacade();
 		HashMap<String, Book> bookmap = da.readBooksMap();
 		if (bookmap == null) {
@@ -132,6 +142,9 @@ public class SystemController implements ControllerInterface {
 
 	@Override
 	public void addBook(String isbn, String title, int maxCheckoutLength, List<Author> authors) {
+		if (isbn.equals("") || title.equals("") || maxCheckoutLength <= 0 || authors.size() <= 0) {
+			throw new IllegalArgumentException();
+		}
 		DataAccess da = new DataAccessFacade();
 		da.saveNewBook(new Book(isbn, title, maxCheckoutLength, authors));
 	}
@@ -145,9 +158,15 @@ public class SystemController implements ControllerInterface {
 
 	@Override
 	public void addAuthor(Author author) {
+		if (author.getFirstName().equals("") || author.getLastName().equals("") || author.getAddress().equals("")
+				|| author.getAuthorId().equals("") || author.getAddress() == null
+				|| author.getAddress().getStreet().equals("") || author.getAddress().getCity().equals("")
+				|| author.getAddress().getState().equals("") || author.getAddress().getZip().equals("")) {
+
+			throw new IllegalArgumentException();
+		}
 		DataAccess da = new DataAccessFacade();
 		da.saveNewAuthor(author);
-
 	}
 
 	@Override
@@ -257,11 +276,21 @@ public class SystemController implements ControllerInterface {
 
 	}
 
-	public void addCheckoutRecord(CheckoutRecordNew checkoutRecord) {
+	public void addCheckoutRecord(BookCopy bookCopy, LocalDate issueDate, String memberID, boolean idWasValidated) {
+		if (bookCopy == null || !bookCopy.isAvailable() || !idWasValidated) {
+			throw new IllegalArgumentException();
+		}
+		CheckoutRecordNew checkoutRecord = new CheckoutRecordNew(bookCopy, LocalDate.now(), memberID.trim());
 		DataAccess da = new DataAccessFacade();
 		da.addCheckoutRecord(checkoutRecord);
 
 	}
+
+//	public void addCheckoutRecord(CheckoutRecordNew checkoutRecord) {
+//		DataAccess da = new DataAccessFacade();
+//		da.addCheckoutRecord(checkoutRecord);
+//
+//	}
 
 //	@Override
 //	public List<String> allBookIds() {

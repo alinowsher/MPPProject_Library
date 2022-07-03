@@ -37,7 +37,7 @@ public class AddMember extends JFrame implements LibWindow {
 
 	@Override
 	public void init() {
-
+		isInitialized = true;
 		JPanel pnlMemberFields = new JPanel();
 
 		pnlMemberFields.setLayout(null);
@@ -178,15 +178,15 @@ public class AddMember extends JFrame implements LibWindow {
 	private void addMemberButtonListener(JButton butn) {
 		butn.addActionListener(evt -> {
 
-			if (txtMemberID.getText().trim().equals("") || txtFirstName.getText().trim().equals("")
-					|| txtLastName.getText().trim().equals("") || txtTelephone.getText().equals("")
-					|| txtStreet.getText().equals("") || txtCity.getText().equals("")
-					|| txtState.getText().trim().equals("") || txtZip.getText().equals("")) {
-				JOptionPane.showMessageDialog(this, "Fields must be entered", "Fields can not be left empty.",
-						JOptionPane.ERROR_MESSAGE);
-
-				return;
-			}
+//			if (txtMemberID.getText().trim().equals("") || txtFirstName.getText().trim().equals("")
+//					|| txtLastName.getText().trim().equals("") || txtTelephone.getText().equals("")
+//					|| txtStreet.getText().equals("") || txtCity.getText().equals("")
+//					|| txtState.getText().trim().equals("") || txtZip.getText().equals("")) {
+//				JOptionPane.showMessageDialog(this, "Fields must be entered", "Fields can not be left empty.",
+//						JOptionPane.ERROR_MESSAGE);
+//
+//				return;
+//			}
 
 			try {
 				LibraryMember member = new LibraryMember(txtMemberID.getText().trim(), txtFirstName.getText().trim(),
@@ -208,8 +208,13 @@ public class AddMember extends JFrame implements LibWindow {
 				jt.setRowSelectionInterval(model.getRowCount() - 1, model.getRowCount() - 1);
 				jt.scrollRectToVisible(new Rectangle(jt.getCellRect(model.getRowCount() - 1, 0, true)));
 
+			} catch (IllegalArgumentException e) {
+				JOptionPane.showMessageDialog(this, "Fields must be entered", "Fields can not be left empty.",
+						JOptionPane.ERROR_MESSAGE);
+				return;
 			} catch (Exception e) {
 				JOptionPane.showMessageDialog(this, e.getMessage(), "Save Failed", JOptionPane.ERROR_MESSAGE);
+				return;
 			}
 
 			resetFields();
