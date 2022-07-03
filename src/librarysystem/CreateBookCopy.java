@@ -22,6 +22,7 @@ public class CreateBookCopy extends JFrame implements LibWindow {
 	private JTextField txtISBN, txtCopyNumber;
 	@Override
 	public void init() {
+		isInitialized = true;
 		JPanel panelCreateCopyField = new JPanel();
 		panelCreateCopyField.setLayout(null);
 		JLabel lblISBN = new JLabel("ISBN:");
@@ -68,6 +69,8 @@ public class CreateBookCopy extends JFrame implements LibWindow {
 
 	private void addBackButtonListener(JButton butn) {
 		butn.addActionListener(evt -> {
+			txtISBN.setText("");
+			txtCopyNumber.setText("");
 			LibrarySystem.hideAllWindows();
 			LibrarySystem.INSTANCE.setVisible(true);
 		});
@@ -88,7 +91,7 @@ public class CreateBookCopy extends JFrame implements LibWindow {
 			}
 			
 			txtISBN.setText("");
-			txtCopyNumber.setText(getName());
+			txtCopyNumber.setText("");
 			
 			JOptionPane.showMessageDialog(this,"Save successful");	
 		});

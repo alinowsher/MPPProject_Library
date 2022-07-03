@@ -63,6 +63,7 @@ public class LoginWindow extends JFrame implements LibWindow {
 	}
 
 	public void init() {		
+		isInitialized = true;
 		mainPanel = new JPanel();
 		defineUpperHalf();
 		defineMiddleHalf();
@@ -151,7 +152,7 @@ public class LoginWindow extends JFrame implements LibWindow {
 		bottomText.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 0));
 		
 		username = new JTextField(10);
-		username.setText("");
+		username.setText("3");
 		label = new JLabel("Username");
 		label.setFont(Util.makeSmallFont(label.getFont()));
 		topText.add(username);
@@ -171,7 +172,7 @@ public class LoginWindow extends JFrame implements LibWindow {
 		bottomText.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 0));
 
 		password = new JPasswordField(10);
-		password.setText("");
+		password.setText("111");
 		label = new JLabel("Password");
 		label.setFont(Util.makeSmallFont(label.getFont()));
 		topText.add(password);

@@ -35,7 +35,7 @@ public class AddBookAuthor extends JFrame implements LibWindow {
 
 	@Override
 	public void init() {
-
+		isInitialized = true;
 		JPanel pnlAuthorFields = new JPanel();
 
 		pnlAuthorFields.setLayout(null);
@@ -145,12 +145,18 @@ public class AddBookAuthor extends JFrame implements LibWindow {
 
 		pnlButtonSave.add(btnBacktoMain);
 		pnlButtonSave.add(btnSave);
-		//pnlButtonSave.setBackground(Color.green);
+		pnlButtonSave.setBackground(Color.gray);
 		pnlAuthorFields.add(pnlButtonSave, BorderLayout.CENTER);
 
 		pnlButtonSave.setBounds(20, 170, 360, 35);
 
-		DefaultTableModel model = new DefaultTableModel();
+		DefaultTableModel model = new DefaultTableModel(){
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				// all cells false
+				return false;
+			}
+		};
 		model.addColumn("Author ID");
 		model.addColumn("Full Name");
 		model.addColumn("City");
@@ -193,6 +199,7 @@ public class AddBookAuthor extends JFrame implements LibWindow {
 
 	private void addBackButtonListener(JButton butn) {
 		butn.addActionListener(evt -> {
+			resetFields();
 			LibrarySystem.hideAllWindows();
 			LibrarySystem.INSTANCE.setVisible(true);
 		});
@@ -233,19 +240,23 @@ public class AddBookAuthor extends JFrame implements LibWindow {
 				JOptionPane.showMessageDialog(this, e.getMessage(), "Save Failed", JOptionPane.ERROR_MESSAGE);
 			}
 
-			txtAuthorID.setText("");
-			txtFirstName.setText("");
-			txtLastName.setText("");
-			txtTelephone.setText("");
-			txtStreet.setText("");
-			txtCity.setText("");
-			txtState.setText("");
-			txtZip.setText("");
-			txtShortBio.setText("");
-			txtCredentials.setText("");
+			resetFields();
 
 			JOptionPane.showMessageDialog(this, "Save successful");
 		});
+	}
+
+	public void resetFields() {
+		txtAuthorID.setText("");
+		txtFirstName.setText("");
+		txtLastName.setText("");
+		txtTelephone.setText("");
+		txtStreet.setText("");
+		txtCity.setText("");
+		txtState.setText("");
+		txtZip.setText("");
+		txtShortBio.setText("");
+		txtCredentials.setText("");
 	}
 
 	@Override

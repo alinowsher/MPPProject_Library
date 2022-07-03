@@ -1,5 +1,6 @@
 package dataAccess;
 
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -24,7 +25,7 @@ public class DataAccessFacade implements DataAccess {
 		BOOKS, MEMBERS, USERS, AUTHORS, CHECKOUTRECORDS;
 	}
 
-	public static final String OUTPUT_DIR = System.getProperty("user.dir") + "\\src\\dataaccess\\storage";
+	public static final String OUTPUT_DIR = System.getProperty("user.dir") + "\\src\\dataAccess\\storage";
 	public static final String DATE_PATTERN = "MM/dd/yyyy";
 
 	// implement: other save operations
@@ -104,14 +105,14 @@ public class DataAccessFacade implements DataAccess {
 	public void saveUserMap(HashMap<String, User> users) {
 		saveToStorage(StorageType.USERS, users);
 	}
-	
+
 	public void createUserMap() {
 		HashMap<String, User> ht = new HashMap<String, User>();
-		User u = new User("1", "111", Auth.LIBRARIAN);		
+		User u = new User("1", "111", Auth.LIBRARIAN);
 		ht.put("1", u);
-		u = new User("2", "111", Auth.ADMIN);		
+		u = new User("2", "111", Auth.ADMIN);
 		ht.put("2", u);
-		u = new User("3", "111", Auth.BOTH);		
+		u = new User("3", "111", Auth.BOTH);
 		ht.put("3", u);
 		saveToStorage(StorageType.USERS, ht);
 	}
@@ -190,8 +191,8 @@ public class DataAccessFacade implements DataAccess {
 			in = new ObjectInputStream(Files.newInputStream(path));
 			retVal = in.readObject();
 		} catch (Exception e) {
-			//e.printStackTrace();
-			;
+			e.printStackTrace();
+
 		} finally {
 			if (in != null) {
 				try {
